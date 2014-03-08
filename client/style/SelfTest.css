@@ -1,0 +1,69 @@
+body{
+	background-color: #f2f2f2;
+}
+#container{
+	text-align: center;
+}
+#cUser{
+	margin-top: 10px;
+	margin-left: 780px;
+	margin-right: auto;
+	text-align: center;
+	width: 42px;
+	height: 18px;
+}
+#userLogin{
+	margin-top: 80px;
+}
+#toout{
+	margin-left: 15px;
+	width: 39px;
+	height: 20px;
+}
+
+#userregister{
+	padding-top: 88px;
+	margin-left: 50px;
+	margin-right: auto;
+}
+#errinfo{
+	float:center;
+	margin-top: 48px;
+	margin-bottom: -86px;
+}
+
+#userloginmoudle{
+	margin-top: 85px;
+	margin-left: 50px;
+}
+
+#msgplace{
+	font-family: "Microsoft YaHei";
+	overflow-y:auto;
+	text-align: center;
+	height: 440px;
+	margin-bottom: 0px;
+}
+#personMsg{
+	width: 900px;
+	height: 100px;
+	margin-top: 20px;
+	margin-left: 300px;
+    background-color:#fff;
+    -moz-border-radius:5px; 
+    -khtml-border-radius:5px; 
+    -webkit-border-radius:5px;
+    border-radius:10px;  
+    border:#909090 1px;
+}
+.usern{
+	color: #ff0000;
+}
+#obj{
+	color: #00CC33;
+}
+#comments{
+	font-family: "Microsoft YaHei";
+	width:487px;
+	height: 150px;
+}

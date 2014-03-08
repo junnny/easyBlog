@@ -1,0 +1,253 @@
+<head>
+  <title>Your Voice</title>
+</head>
+
+<body>
+  <div id="mainlayout">
+    <div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li><a href="" class="brand">Meteor.js</a></li>
+            <li><div id="mainPage"><a href=""><h4>主页</h4></a></div></li>
+          </ul>
+          <div id="cUser" class="label label-info">{{currentUser.username}}</div>
+          <a href="#profile" role="button" class="btn btn-primary pull-right" data-toggle="modal">关于</a>
+            <div id="profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myml" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myml">About</h3>
+                <div class="modal-body">
+                  <h5 class="lead"><strong>本人热衷于新技术的学习和探讨：</strong></h5>
+                  <ul>
+                    <li>ASP.NET MVC</li>
+                    <li>WCF</li>
+                    <li>Node.js</li>
+                    <li>Meteor</li>             
+                    <li>数据库系列:SQL SERVER,Mysql以及Nosql</li>
+                    <li>同时也学习JAVA，曾今也自己学习过Android,但是学习技术要专一所以这方面就放下了</li>
+                  </ul>
+                  <h5 class="lead"><strong>关于本站几点声明：</strong></h5>
+                  <ul>
+                    <li>本站纯粹是练技术的实验小站丝毫不含商业内容</li>
+                    <li>本站是存在些安全方面的问题，本人也在不断地修补</li>
+                    <li>最后一点还请各位大神别总是攻击小站。</li>
+                  </ul>
+                  <h5 class="lead"><strong>联系我：</strong></h5>
+                  <ul>
+                    <li>Email：<a href="mailto:zdwloveschina@gmail.com">zdwloveschina@gmail.com</a></li>
+                    <li>博客园：http://www.cnblogs.com/struCoder</li>
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">关闭</button>
+                </div>
+              </div>
+
+            </div>
+          {{>logout}}
+      </div>
+    </div>
+  </div>
+  {{>manage}}
+  <div id="container" class="container">
+    <hr/>
+    <footer>
+      <p><a href="http://www.cnblogs.com/struCoder"><small>DZhang &copy; 2014</small></a></p>
+    </footer>
+  </div>
+  </div>
+
+</body>
+
+<template name="manage">
+   {{#if istologin}}
+     {{#if isErrorlogin}}
+          <div id = "errinfo" class="alert alert-error">{{errors}}</div>
+      {{/if}}
+    <div id="userloginmoudle">
+      <form class="form-horizontal">
+       <fieldset>
+          <legend>Login</legend>
+            <div id="login" class="control-group">
+              {{>Login}}
+            </div>
+        </fieldset>
+       </form>
+    </div>
+  {{else}}
+    {{#if istoregister}}
+    {{#if isError}}
+        <div id = "errinfo" class="alert alert-error">{{error}}</div>
+    {{/if}}
+    <div id="userregister" class="control-group">
+      <fieldset>
+        <legend>User Register</legend>
+          <form class="form-horizontal">
+           <div id="register" class="control-group">
+             {{>register}}
+            </div>
+          </form>
+      </fieldset>
+    </div>
+    {{else}}
+      {{>mainlayout}}
+    {{/if}}
+  {{/if}}
+</template>
+
+
+<template name="mainlayout">
+  <blockquote>
+    <div class="alert alert-info">
+      <h1>Welcome to "Your Voice"</h1>
+       <p>Here you can say words that you want to say and whole the world people can see it!</p>
+        {{#if currentUser}}
+           {{>postMsg}}
+         {{else}}
+           <p>
+             <div id="tologin" class="btn btn-primary btn-large">Login</div>
+             <div id="toregister" class="btn btn-large">Register</div>
+            </p>
+        {{/if}}
+    </div>
+  </blockquote>
+ 
+
+<div id="msgplace">
+  {{#each msg}}
+    <div id="personMsg">
+      <p class="text-left">
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By：<span class="usern">{{uname}}</span> | 
+         发表于：<small>{{sayTime.minute}}</small> | 
+         <small>评论数:<span class="badge badge-info">{{comments.length}}</span></small>
+      </p>
+      {{messages}}<br><br>
+
+      <div class="btn-group pull-right">
+        <a href="#toSee" title="查看评论" id="{{_id}}" role="button" class="clickToSee btn" data-toggle="modal">
+          <i class="icon-th-list"></i>
+        </a>
+        <div id="toSee" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="userComs" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="userComs">评论详情</h3>
+          </div>
+          <div class="modal-body">
+            <h5>
+              {{#each printComments}}
+               {{#each comments}}
+                  <div class="row"><small>评论者：<span class="usern">{{comment_user}}</span> | 
+                    评论时间：{{time.minute}}</small>
+                  </div>
+                  {{contents}}
+               {{/each}}
+              {{/each}}
+            </h5>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+          </div>
+        </div>
+        {{#if currentUser}}
+          <a tabindex="-1" href="#com" title="点击评论" class="comment btn" data-toggle="modal">
+            <i class="icon-pencil"></i>
+        </a>
+          {{else}}
+            <a tabindex="-1" href="#" title="需登录方可评论" class="comment btn" disabled data-toggle="modal">
+            <i class="icon-pencil"></i>
+        </a>
+        {{/if}}
+        
+      </div>
+      
+      <div id="com" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ml" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 id="ml">对&nbsp;<span id="obj">{{uname}}</span>&nbsp;发表的内容评价</h4>
+        </div>
+        <div class="modal-body">
+          <textarea rows = "5" cols="200" id="comments" placeholder="字数>=0 && 字数<=38"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">关闭</button>
+          <button class="btn btn-danger" id="subContent" data-dismiss="modal">提交</button>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+</template>
+
+
+<template name="Login">
+  <div id="userLogin">
+    <div class="control-group">
+      <label class="control-label" for="userName">Name:</label>
+        <div class="controls">
+        <input id="userName" class="input-xlarge" required name="userName" type="text"/>
+      </div>
+    </div>
+  	
+    <div class="control-group">
+      <label class="control-label" for="userPwd">Password:</label>
+      <div class="controls">
+        <input id="userPwd" type="password" required class="input-xlarge" name="userPwd"/> 
+      </div>  
+    </div>
+
+      <div class="form-actions">
+        <div id="signin" class="btn btn-primary">login</div>
+      </div>
+  </div>
+</template>
+
+<template name="logout">
+  {{#if currentUser}}
+    <div id="toout" class="btn btn-info">logout</div>
+  {{/if}}
+</template>
+
+<template name="register">
+    <div class="control-group">
+      <label class="control-label" for="registerName">Name:</label>
+       <div class="controls">
+         <input id="registerName" class="input-xlarge" required name="registerName" type="text" placeholder="unique name"/>
+       </div>
+    </div>
+
+    <div class="control-group">
+      <label class="col-sm-2 control-label" for="registerPwd">Password:</label>
+      <div class="controls">
+        <input id="registerPwd" type="password" required class="input-xlarge" name="registerPwd" placeholder="length >=6"/> 
+      </div>  
+    </div>
+
+    <div class="control-group">
+      <label class="col-sm-2 control-label" for="confirmPwd">Confirm Password</label>
+      <div class="controls">
+        <input id="confirmPwd" type="password" required class="input-xlarge" name="confirmPwd" placeholder="make sure pwd">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="col-sm-2 control-label" for="registerEmail">Email:</label>
+      <div class="controls">
+        <input id="registerEmail" type="text" required class="input-xlarge" name="registerEmail" placeholder="legal email">
+      </div>
+    </div>
+
+      <div class="form-actions">
+        <div id="register" class="btn btn-primary">Register</div>
+      </div>
+</template>
+
+<template name="postMsg">
+  <form class="form-inline center" style="text-align:center">
+    <input id="content" data-animation="sfsf" type="text" required class="span8 form-control" placeholder="length >= 6 && length <= 38">
+    <div id="post_Msg" class="btn btn-success"><i class="icon-comment icon-white"></i>Say</div>
+  </form>
+
+</template>
+
+
