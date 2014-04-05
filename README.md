@@ -6,14 +6,14 @@ spend 6s (even more)to waiting the data loaded.Howere,now,i use the technolog of
 so, at present,you can get it within 2s.  
 How can i do it?
 ================
-'Template.mainlayout.msg = function(){
-	 return Msg.find({},
-	 	{
-	 		skip:(Session.get('currentPage')-1)*8,
-	 		sort:{sayTime:-3},
-	 		limit:8
+>``Template.mainlayout.msg = function(){
+	 return Msg.find({},  
+	 	{  
+	 		skip:(Session.get('currentPage')-1)*8,  
+	 		sort:{sayTime:-3},  
+	 		limit:8  
 	});
-};'  
+};``  
 so,we can get eight records from Database per access.when the user first time to visit the web site.only load eight records.  
 #####At present,the updated version about my website hasn't put to GitHub#####
 This is about a EasyVoice website[Click me](http://dzhangblog.meteor.com/)
