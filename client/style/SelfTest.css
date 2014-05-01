@@ -1,54 +1,26 @@
 body{
-	background-color: #f2f2f2;
+	background-color: #E8E8E8;
+	font-family: "Microsoft YaHei";
+	FILTER: progid:DXImageTransform.Microsoft.Alpha(  
+style=1,opacity=50,finishOpacity=80,startX=300,finishX=450,startY=100,finishY=150); BACKGROUND-COLOR:
+skyblue
 }
 #container{
+	margin-top: 0px;
 	text-align: center;
-}
-#cUser{
-	margin-top: 10px;
-	margin-left: 780px;
-	margin-right: auto;
-	text-align: center;
-	width: 42px;
-	height: 18px;
-}
-#userLogin{
-	margin-top: 80px;
-}
-#toout{
-	margin-left: 15px;
-	width: 39px;
-	height: 20px;
-}
-
-#userregister{
-	padding-top: 88px;
-	margin-left: 50px;
-	margin-right: auto;
-}
-#errinfo{
-	float:center;
-	margin-top: 48px;
-	margin-bottom: -86px;
-}
-
-#userloginmoudle{
-	margin-top: 85px;
-	margin-left: 50px;
 }
 
 #msgplace{
-	font-family: "Microsoft YaHei";
 	overflow-y:auto;
 	text-align: center;
-	height: 440px;
-	margin-bottom: 0px;
+	height: 880px;
+
 }
 #personMsg{
-	width: 900px;
+	margin-left: 40px;
+	width: 800px;
 	height: 100px;
 	margin-top: 20px;
-	margin-left: 300px;
     background-color:#fff;
     -moz-border-radius:5px; 
     -khtml-border-radius:5px; 
@@ -66,4 +38,41 @@ body{
 	font-family: "Microsoft YaHei";
 	width:487px;
 	height: 150px;
+}
+#vipInfo{
+	width: 310px;
+	height: 200px;
+	margin-top: 20px;
+	background-color:#fff;
+    font-family: "Microsoft YaHei";
+}
+.details{
+	margin-left: 20px;
+	margin-top: 8px;
+}
+
+#call_board{
+	width: 310px;
+	height: 180px;
+	margin-top: 25px;
+	background-color:#fff;
+}
+#abloutComments{
+	overflow-y:auto;
+	text-align: center;
+	width:310px;
+	height: 440px;
+	margin-top: 30px;
+	background-color:#fff;
+}
+#content{
+	width: 278px;
+	font-family: "Microsoft YaHei";
+}
+.mes{
+	color: #993300;
+}
+/*下面这个是分页按钮的设置*/
+#Pages{
+	float: right;
 }

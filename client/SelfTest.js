@@ -1,42 +1,26 @@
-
-Session.setDefault("istologin",false);
-
-Session.setDefault("istoregister",false);
-
-Session.setDefault("isError",false);
-
-Session.setDefault("isErrorlogin",false);
-
 Session.setDefault("comsObj",null);
 
-Template.manage.istologin = function(){
-	return Session.equals("istologin",true);
-};
+Meteor.subscribe("userDate");
 
-Template.manage.istoregister =function(){
-	return Session.equals("istoregister",true);
-};
+Session.setDefault("currentPage",1);
 
-Template.manage.isError = function(){
-	return Session.equals("isError",true);
-};
-
-Template.manage.error = function(){
-	return Session.get('errorInfo');
-};
-
-Template.manage.isErrorlogin = function(){
-	return Session.equals('isErrorlogin',true);
-};
-
-Template.manage.errors = function(){
-	return Session.get('errorsInfo');
-};
+Session.setDefault("isAdmin",false);
 
 Template.mainlayout.msg = function(){
-	 return Msg.find({},{sort:{sayTime:-3}});
+	 return Msg.find({},
+	 	{
+	 		skip:(Session.get('currentPage')-1)*8,
+	 		sort:{sayTime:-3},
+	 		limit:8
+	});
 };
 Template.mainlayout.printComments = function(){
 	return Msg.find({"_id":Session.get('comsObj')});
-	
-}
+};
+
+Template.usersComments.details = function(){
+	if(Session.get('currentName')!=null){
+		var getComments = Msg.find({"uname":Session.get('currentName')},{fields:{uname:0},sort:{sayTime:-1}});
+		return getComments;
+	}
+};
