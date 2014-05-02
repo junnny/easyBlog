@@ -1,9 +1,6 @@
 body{
 	background-color: #E8E8E8;
 	font-family: "Microsoft YaHei";
-	FILTER: progid:DXImageTransform.Microsoft.Alpha(  
-style=1,opacity=50,finishOpacity=80,startX=300,finishX=450,startY=100,finishY=150); BACKGROUND-COLOR:
-skyblue
 }
 #container{
 	margin-top: 0px;
